@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wini Suci As Zahra — Change Management Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --paper: #FAFAF7;
+  --accent: #2D6A4F;
+  --accent-light: #40916C;
+  --accent-glow: #52B788;
+  --warm: #D4A373;
+  --warm-light: #E9C46A;
+  --muted: #6B7280;
+  --light-border: #E5E2DB;
+  --card-bg: #FFFFFF;
+  --section-bg: #F3F1EC;
+  --tag-bg: #EDF2E9;
+  --tag-text: #2D6A4F;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #1a3a3a 70%, #2D6A4F 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 80vw;
+  height: 80vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,106,79,0.15) 0%, transparent 70%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -20%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,163,115,0.1) 0%, transparent 70%);
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.05); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-glow);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: #FAFAF7;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.4s forwards;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-glow);
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(250,250,247,0.65);
+  font-weight: 300;
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.6s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.8s forwards;
+}
+
+.hero-cta a {
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.cta-primary {
+  background: var(--accent-glow);
+  color: var(--ink);
+}
+
+.cta-primary:hover { background: #95D5B2; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(82,183,136,0.3); }
+
+.cta-secondary {
+  border: 1.5px solid rgba(250,250,247,0.3);
+  color: var(--paper);
+}
+
+.cta-secondary:hover { border-color: var(--accent-glow); color: var(--accent-glow); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+.scroll-hint span {
+  display: block;
+  width: 1.5px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent-glow), transparent);
+  margin: 0 auto;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; height: 40px; }
+  50% { opacity: 0.4; height: 25px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(250,250,247,0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  padding: 0.8rem 3rem;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--paper);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav.scrolled .nav-logo { color: var(--ink); }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(250,250,247,0.7);
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+nav.scrolled .nav-links a { color: var(--muted); }
+.nav-links a:hover { color: var(--accent-glow); }
+nav.scrolled .nav-links a:hover { color: var(--accent); }
+
+/* ═══ SECTIONS ═══ */
+section { padding: 6rem 2rem; }
+
+.container { max-width: 1080px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 600px;
+  font-weight: 300;
+}
+
+/* ═══ ABOUT ═══ */
+#about { background: var(--paper); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 16px;
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.stat-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(45,106,79,0.08); }
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.about-text p {
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* ═══ METHODOLOGY ═══ */
+#methodology { background: var(--section-bg); }
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.method-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--light-border);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.method-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
+
+.method-step {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(45,106,79,0.08);
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  line-height: 1;
+}
+
+.method-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--tag-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.method-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+
+.method-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ═══ CASE STUDIES ═══ */
+#cases { background: var(--paper); }
+
+.cases-grid {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.case-card {
+  background: var(--card-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.case-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.07); transform: translateY(-4px); }
+
+.case-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  padding: 2.5rem 2.5rem 1.5rem;
+  gap: 2rem;
+}
+
+.case-industry {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.case-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.case-org {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.case-metrics {
+  display: flex;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.metric {
+  min-width: 80px;
+}
+
+.metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.metric-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.case-body {
+  padding: 0 2.5rem 2.5rem;
+  display: none;
+}
+
+.case-card.expanded .case-body { display: block; }
+
+.case-section { margin-bottom: 1.5rem; }
+
+.case-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.case-section p, .case-section li {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.75;
+}
+
+.case-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.case-section li {
+  padding-left: 1.2rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.case-section li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.expand-hint {
+  display: block;
+  padding: 1rem 2.5rem 1.8rem;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.case-card.expanded .expand-hint span { display: none; }
+.case-card.expanded .expand-hint::after { content: 'Click to collapse ↑'; }
+
+/* ═══ TOOLKIT ═══ */
+#toolkit { background: var(--section-bg); }
+
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.tool-card {
+  background: var(--card-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  transition: all 0.3s;
+}
+
+.tool-card:hover { border-color: var(--accent); }
+
+.tool-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.tool-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ═══ CONTACT ═══ */
+#contact {
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #1a3a3a 70%, #2D6A4F 100%);
+  text-align: center;
+}
+
+#contact .section-label { color: var(--accent-glow); }
+#contact .section-title { color: var(--paper); }
+#contact .section-subtitle { color: rgba(250,250,247,0.6); margin: 0 auto 2.5rem; }
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.3s;
+  border: 1.5px solid rgba(250,250,247,0.15);
+  color: var(--paper);
+}
+
+.contact-link:hover { border-color: var(--accent-glow); color: var(--accent-glow); transform: translateY(-2px); }
+
+.contact-link.primary {
+  background: var(--accent-glow);
+  color: var(--ink);
+  border-color: var(--accent-glow);
+}
+
+.contact-link.primary:hover { background: #95D5B2; }
+
+/* ═══ FOOTER ═══ */
+footer {
+  background: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(250,250,247,0.35);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .method-grid { grid-template-columns: 1fr 1fr; }
+  .toolkit-grid { grid-template-columns: 1fr; }
+  .case-header { grid-template-columns: 1fr; }
+  .case-metrics { margin-top: 1rem; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.75rem; }
+}
+
+@media (max-width: 600px) {
+  .method-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+  section { padding: 4rem 1.2rem; }
+  .case-header { padding: 1.8rem 1.5rem 1rem; }
+  .case-body { padding: 0 1.5rem 1.5rem; }
+  .expand-hint { padding: 0.8rem 1.5rem 1.5rem; }
+  .hero-cta { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">WSZ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#methodology">Approach</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#toolkit">Toolkit</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-label">Change Management &amp; Transformation</div>
+    <h1>Wini Suci <em>As Zahra</em></h1>
+    <p class="hero-subtitle">Helping organizations navigate complex transformations — from SAP rollouts to cultural shifts — with clarity, strategy, and measurable results.</p>
+    <div class="hero-cta">
+      <a href="#cases" class="cta-primary">View Case Studies</a>
+      <a href="#contact" class="cta-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About Me</div>
+    <div class="section-title">Bridging People, Process<br>& Technology</div>
+    <div class="about-grid">
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1,400+</div>
+          <div class="stat-label">End Users Impacted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Industries Served</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Change Agents Coached</div>
+        </div>
+      </div>
+      <div>
+        <div class="about-text">
+          <p>I'm a Change Management professional based in Jakarta, specializing in enterprise-scale digital transformations across energy, manufacturing, forestry, government, and professional services.</p>
+          <p>My work sits at the intersection of people and systems — helping organizations adopt new technologies and ways of working through structured impact assessments, stakeholder engagement, and capability building. I've led SAP S/4 HANA implementations, ERP rollouts, and organizational restructuring programs for multinational clients including Shell, POSCO, and Pertamina.</p>
+          <p>As an IISMA Awardee with cross-cultural experience from Middle East Technical University (Turkey), I bring a global perspective to local transformation challenges.</p>
+        </div>
+        <div class="about-tags">
+          <span class="tag">Change Impact Assessment</span>
+          <span class="tag">SAP S/4 HANA</span>
+          <span class="tag">Stakeholder Engagement</span>
+          <span class="tag">Training Design</span>
+          <span class="tag">Communication Strategy</span>
+          <span class="tag">Digital Transformation</span>
+          <span class="tag">FTE Calculation</span>
+          <span class="tag">Business Readiness</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="methodology">
+  <div class="container">
+    <div class="section-label">My Approach</div>
+    <div class="section-title">How I Drive Change</div>
+    <p class="section-subtitle">A structured, people-centered methodology refined across multiple industries and transformation types.</p>
+    <div class="method-grid">
+      <div class="method-card">
+        <div class="method-step">01</div>
+        <div class="method-icon">🔍</div>
+        <h3>Assess & Diagnose</h3>
+        <p>Comprehensive change impact, organizational readiness, and risk-benefit assessments to understand the human side of transformation before execution begins.</p>
+      </div>
+      <div class="method-card">
+        <div class="method-step">02</div>
+        <div class="method-icon">🧭</div>
+        <h3>Strategy & Design</h3>
+        <p>Develop integrated change strategies aligned with C-level objectives, covering stakeholder mapping, communication plans, and training roadmaps.</p>
+      </div>
+      <div class="method-card">
+        <div class="method-step">03</div>
+        <div class="method-icon">🚀</div>
+        <h3>Execute & Enable</h3>
+        <p>Deploy multi-channel communication campaigns, deliver competency-based training programs, and coach Change Agents to drive adoption at every level.</p>
+      </div>
+      <div class="method-card">
+        <div class="method-step">04</div>
+        <div class="method-icon">📊</div>
+        <h3>Measure & Sustain</h3>
+        <p>Track adoption through Change Metrics Dashboards, monitor resistance patterns, and iterate to ensure lasting behavioral change beyond go-live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <div class="section-title">Transformation Stories</div>
+    <p class="section-subtitle">Selected projects showcasing end-to-end change management across diverse contexts.</p>
+    <div class="cases-grid">
+
+      <!-- CASE 1 -->
+      <div class="case-card" onclick="this.classList.toggle('expanded')">
+        <div class="case-header">
+          <div>
+            <div class="case-industry">Pulp, Paper & Forestry</div>
+            <h3>Driving Digital Adoption at Scale: SAP S/4 HANA Transformation</h3>
+            <div class="case-org">Leading Global Pulp & Paper Manufacturer — in partnership with Accenture</div>
+          </div>
+          <div class="case-metrics">
+            <div class="metric">
+              <div class="metric-value">1,000+</div>
+              <div class="metric-label">End Users</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">30%</div>
+              <div class="metric-label">Efficiency Gain</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">6</div>
+              <div class="metric-label">Regions</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-section">
+            <div class="case-section-label">The Challenge</div>
+            <p>A Fortune Global 500 pulp and paper manufacturer was implementing SAP S/4 HANA across its entire value chain — from forestry operations (nursery, plantation, harvesting) to manufacturing (Pindo Deli, OKI Mills). The transformation impacted 1,000+ end users across 6 regions, with significant resistance risks due to deeply entrenched legacy processes and varying digital literacy levels across operational sites.</p>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">My Approach</div>
+            <ul>
+              <li>Conducted comprehensive Change Impact Assessments and Organization Impact Assessments for every business process, mapping changes, risks, and benefits at the process level</li>
+              <li>Designed competency-based training programs targeting specific skill gaps across 4 new business processes, building training curriculums from scratch with needs analysis and post-training assessments</li>
+              <li>Calculated Full-Time Equivalent (FTE) for 1,400+ end users to provide data-driven workforce optimization recommendations post-implementation</li>
+              <li>Built and executed multi-channel communication programs across all operational regions, using infographics, stakeholder briefings, and on-site engagement sessions</li>
+              <li>Managed change readiness tracking to proactively identify and address resistance hotspots before each deployment wave</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">The Results</div>
+            <ul>
+              <li>Achieved approximately 30% efficiency improvement in operational performance post-SAP deployment</li>
+              <li>Reached 80% training completion rate and 80% skill improvement across all target user groups</li>
+              <li>Achieved approximately 70% positive adoption feedback from end users</li>
+              <li>Successfully deployed across Pindo Deli, OKI Mills, and Forestry divisions on schedule</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">Key Lesson</div>
+            <p>In large-scale ERP transformations with diverse user populations, one-size-fits-all training fails. The breakthrough came from segmenting users by digital literacy level and operational context, then tailoring training intensity and format accordingly. Field operators needed hands-on simulation; managers needed process-flow workshops. This segmentation was the single biggest driver of the 80% skill improvement outcome.</p>
+          </div>
+          <div class="case-tags">
+            <span class="tag">SAP S/4 HANA</span>
+            <span class="tag">Change Impact Assessment</span>
+            <span class="tag">Training Design</span>
+            <span class="tag">FTE Calculation</span>
+            <span class="tag">Accenture Partnership</span>
+          </div>
+        </div>
+        <div class="expand-hint"><span>Click to read full case study →</span></div>
+      </div>
+
+      <!-- CASE 2 -->
+      <div class="case-card" onclick="this.classList.toggle('expanded')">
+        <div class="case-header">
+          <div>
+            <div class="case-industry">Engineering & Construction</div>
+            <h3>Cross-Client Change Management in Engineering & Construction</h3>
+            <div class="case-org">Leading Indonesian EPC Company — 5 Multinational Clients</div>
+          </div>
+          <div class="case-metrics">
+            <div class="metric">
+              <div class="metric-value">5</div>
+              <div class="metric-label">Clients</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">4</div>
+              <div class="metric-label">Business Systems</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-section">
+            <div class="case-section-label">The Challenge</div>
+            <p>A major Indonesian engineering, procurement, and construction (EPC) firm was simultaneously rolling out 4 new enterprise systems — Manpower Planning, Document Management, Management System, and Project Productivity Management — while serving active projects for 5 multinational clients: Pertamina, POSCO, Shell, Pupuk Kaltim, and LCo2. The challenge was managing change at the corporate level while adapting to client-specific project requirements.</p>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">My Approach</div>
+            <ul>
+              <li>Led full-cycle change management from scoping through adoption, covering corporate-level systems and project-level operational workflows</li>
+              <li>Conducted change impact assessments across 3 core disciplines: engineering, procurement, and construction — each with distinct process cultures</li>
+              <li>Designed scalable change frameworks that could flex between corporate standardization and client-specific project demands</li>
+              <li>Managed training needs analysis and skill development programs for managers and field teams simultaneously</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">The Results</div>
+            <ul>
+              <li>Successfully deployed all 4 systems from corporate to project level within the planned timeline</li>
+              <li>Optimized site operational management workflows across engineering, procurement, and construction</li>
+              <li>Created a reusable change management framework adaptable to future EPC client engagements</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">Key Lesson</div>
+            <p>When managing change across multiple simultaneous client engagements in EPC, the critical success factor is separating "core change" (corporate systems and processes that are non-negotiable) from "adaptive change" (client-specific workflows that need flexibility). Trying to standardize everything creates resistance; allowing everything to be custom creates chaos. The framework needs a clear core with defined flex points.</p>
+          </div>
+          <div class="case-tags">
+            <span class="tag">EPC</span>
+            <span class="tag">Multi-Client</span>
+            <span class="tag">Operational Change</span>
+            <span class="tag">System Rollout</span>
+          </div>
+        </div>
+        <div class="expand-hint"><span>Click to read full case study →</span></div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div class="case-card" onclick="this.classList.toggle('expanded')">
+        <div class="case-header">
+          <div>
+            <div class="case-industry">State-Owned Enterprises</div>
+            <h3>Unifying Three SOEs Under a Single Transformation Agenda</h3>
+            <div class="case-org">Survey & Inspection Holding — Cross-Entity Integration</div>
+          </div>
+          <div class="case-metrics">
+            <div class="metric">
+              <div class="metric-value">3</div>
+              <div class="metric-label">Sub-Holdings</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-section">
+            <div class="case-section-label">The Challenge</div>
+            <p>A newly formed state-owned holding company needed to integrate three established survey and inspection entities — each with distinct corporate cultures, governance structures, and operational systems — under a unified transformation agenda. The challenge extended beyond systems integration to cultural alignment and governance harmonization.</p>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">My Approach</div>
+            <ul>
+              <li>Designed a cross-entity Change Management Program that respected the identity of each subsidiary while building toward unified operating principles</li>
+              <li>Conducted comprehensive Change Impact Assessments across systems, roles, governance, and culture at all three sub-holdings</li>
+              <li>Identified and mitigated high-impact transformation risks unique to each entity, creating entity-specific mitigation plans within a shared framework</li>
+              <li>Developed change communication strategies that balanced holding-level messaging with subsidiary-level relevance</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">Key Lesson</div>
+            <p>Merging cultures is harder than merging systems. When integrating multiple organizations, the biggest mistake is leading with systems and process standardization. Leading with a shared vision and governance clarity — then layering systems on top — creates the psychological safety needed for people to let go of "how we've always done it."</p>
+          </div>
+          <div class="case-tags">
+            <span class="tag">SOE Integration</span>
+            <span class="tag">Cultural Change</span>
+            <span class="tag">Governance</span>
+            <span class="tag">Cross-Entity</span>
+          </div>
+        </div>
+        <div class="expand-hint"><span>Click to read full case study →</span></div>
+      </div>
+
+      <!-- CASE 4 -->
+      <div class="case-card" onclick="this.classList.toggle('expanded')">
+        <div class="case-header">
+          <div>
+            <div class="case-industry">Government / Public Sector</div>
+            <h3>Modernizing IT Governance Across 100+ Diplomatic Missions</h3>
+            <div class="case-org">Ministry of Foreign Affairs of the Republic of Indonesia</div>
+          </div>
+          <div class="case-metrics">
+            <div class="metric">
+              <div class="metric-value">100+</div>
+              <div class="metric-label">Embassies</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-section">
+            <div class="case-section-label">The Challenge</div>
+            <p>Indonesia's Ministry of Foreign Affairs faced significant challenges in IT governance across its global network of 100+ embassies. Decentralized IT management, varying levels of local technical capability, and the unique challenge of regular ambassadorial rotations created a fragmented technology landscape that hindered modernization efforts.</p>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">My Approach</div>
+            <ul>
+              <li>Delivered organizational and human resource analysis for global IT divisions, mapping decentralized governance challenges across embassy networks worldwide</li>
+              <li>Facilitated workload and job role change assessments to recommend structure modernization and capability alignment</li>
+              <li>Drafted change communications and upskilling strategy specifically tied to ambassadorial rotation cycles and local IT readiness levels</li>
+              <li>Developed recommendations for sustainable capability building that accounts for frequent leadership transitions</li>
+            </ul>
+          </div>
+          <div class="case-section">
+            <div class="case-section-label">Key Lesson</div>
+            <p>Government transformation requires a fundamentally different change management cadence. Unlike corporate transformations with clear executive mandates, diplomatic institutions operate on rotation cycles and consensus. Change strategies must be designed to survive leadership transitions — embedding adoption into institutional processes rather than relying on individual champions who will inevitably rotate out.</p>
+          </div>
+          <div class="case-tags">
+            <span class="tag">Government</span>
+            <span class="tag">IT Governance</span>
+            <span class="tag">Global Operations</span>
+            <span class="tag">Org Design</span>
+          </div>
+        </div>
+        <div class="expand-hint"><span>Click to read full case study →</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKIT -->
+<section id="toolkit">
+  <div class="container">
+    <div class="section-label">Toolkit</div>
+    <div class="section-title">Frameworks & Tools I Use</div>
+    <p class="section-subtitle">Practical tools developed and refined through real-world implementations.</p>
+    <div class="toolkit-grid">
+      <div class="tool-card">
+        <h3>Change Impact Assessment</h3>
+        <p>Structured analysis mapping process-level changes, risks, and benefits across business units — with heat-mapping for resistance prediction.</p>
+      </div>
+      <div class="tool-card">
+        <h3>Change Readiness Survey</h3>
+        <p>Diagnostic instrument measuring organizational and individual readiness across awareness, desire, knowledge, ability, and reinforcement dimensions.</p>
+      </div>
+      <div class="tool-card">
+        <h3>Stakeholder Mapping</h3>
+        <p>Influence-impact matrix identifying key sponsors, change agents, and resistance clusters — with tailored engagement strategies for each segment.</p>
+      </div>
+      <div class="tool-card">
+        <h3>Training Curriculum Design</h3>
+        <p>Competency-gap-based training programs with needs analysis, curriculum development, delivery planning, and post-training effectiveness assessments.</p>
+      </div>
+      <div class="tool-card">
+        <h3>FTE Calculation & Workforce Analysis</h3>
+        <p>Data-driven Full-Time Equivalent analysis to quantify workforce optimization opportunities pre- and post-transformation.</p>
+      </div>
+      <div class="tool-card">
+        <h3>Change Metrics Dashboard</h3>
+        <p>Real-time tracking of adoption rates, training completion, engagement scores, and resistance patterns — enabling proactive intervention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title">Let's Talk Transformation</div>
+    <p class="section-subtitle">Whether you're planning an ERP rollout, organizational restructuring, or cultural transformation — I'd love to connect.</p>
+    <div class="contact-links">
+      <a href="mailto:winiscaz28@gmail.com" class="contact-link primary">✉ winiscaz28@gmail.com</a>
+      <a href="https://www.linkedin.com/in/winizahra" target="_blank" class="contact-link">in LinkedIn</a>
+      <a href="tel:+6289798880896" class="contact-link">📞 +62 897 988 0896</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Wini Suci As Zahra. Built with intention.</p>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Animate elements on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stat-card, .method-card, .case-card, .tool-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
