@@ -4,35 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wini Suci As Zahra — Change Management Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #1a1a2e;
-  --paper: #FAFAF7;
-  --accent: #2D6A4F;
-  --accent-light: #40916C;
-  --accent-glow: #52B788;
-  --warm: #D4A373;
-  --warm-light: #E9C46A;
-  --muted: #6B7280;
-  --light-border: #E5E2DB;
+  --ink: #0C1F17;
+  --paper: #F6F9F4;
+  --accent: #065F46;
+  --accent-light: #059669;
+  --accent-glow: #34D399;
+  --warm: #D97706;
+  --warm-light: #F59E0B;
+  --muted: #547264;
+  --light-border: #D1DDD5;
   --card-bg: #FFFFFF;
-  --section-bg: #F3F1EC;
-  --tag-bg: #EDF2E9;
-  --tag-text: #2D6A4F;
+  --section-bg: #EDF3EA;
+  --tag-bg: #DCFCE7;
+  --tag-text: #065F46;
+  --hero-start: #041F14;
+  --hero-mid: #062B1E;
+  --hero-end: #065F46;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   color: var(--ink);
   background: var(--paper);
   line-height: 1.7;
   overflow-x: hidden;
 }
+
+.icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.icon svg { width: 100%; height: 100%; }
 
 /* ═══ HERO ═══ */
 .hero {
@@ -41,37 +46,63 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #1a3a3a 70%, #2D6A4F 100%);
+  background: linear-gradient(170deg, var(--hero-start) 0%, var(--hero-mid) 35%, #0A3D2A 60%, var(--hero-end) 100%);
   overflow: hidden;
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -30%;
-  width: 80vw;
-  height: 80vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(45,106,79,0.15) 0%, transparent 70%);
-  animation: float 20s ease-in-out infinite;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(52,211,153,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(217,119,6,0.04) 0%, transparent 70%);
+  animation: drift 25s ease-in-out infinite;
 }
 
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -30%;
-  left: -20%;
-  width: 60vw;
-  height: 60vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,163,115,0.1) 0%, transparent 70%);
-  animation: float 25s ease-in-out infinite reverse;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(52,211,153,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52,211,153,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.8;
 }
 
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, -40px) scale(1.05); }
+.hero-bg-icons {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-bg-icon {
+  position: absolute;
+  opacity: 0.04;
+  color: var(--accent-glow);
+  animation: floatIcon 30s ease-in-out infinite;
+}
+
+.hero-bg-icon:nth-child(1) { top: 12%; left: 8%; width: 80px; animation-delay: 0s; }
+.hero-bg-icon:nth-child(2) { top: 60%; right: 10%; width: 100px; animation-delay: -8s; animation-duration: 35s; }
+.hero-bg-icon:nth-child(3) { bottom: 18%; left: 15%; width: 70px; animation-delay: -15s; animation-duration: 28s; }
+.hero-bg-icon:nth-child(4) { top: 25%; right: 20%; width: 60px; animation-delay: -5s; animation-duration: 32s; }
+.hero-bg-icon:nth-child(5) { top: 70%; left: 60%; width: 90px; animation-delay: -12s; animation-duration: 26s; }
+
+@keyframes floatIcon {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(15px, -20px) rotate(5deg); }
+  50% { transform: translate(-10px, 15px) rotate(-3deg); }
+  75% { transform: translate(20px, 10px) rotate(4deg); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(10px, -15px); }
+  66% { transform: translate(-8px, 10px); }
 }
 
 .hero-content {
@@ -79,44 +110,88 @@ body {
   z-index: 2;
   text-align: center;
   padding: 2rem;
-  max-width: 800px;
+  max-width: 820px;
 }
 
+.hero-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.5rem;
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-glow);
+  opacity: 0;
+  animation: fadeUp 1s 0.1s forwards;
+}
+
+.hero-icon svg { width: 28px; height: 28px; }
+
 .hero-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--accent-glow);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   opacity: 0;
   animation: fadeUp 1s 0.2s forwards;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.hero-label::before,
+.hero-label::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent-glow);
+  opacity: 0.5;
 }
 
 .hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
-  color: #FAFAF7;
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 800;
+  color: #F6F9F4;
   line-height: 1.15;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
   opacity: 0;
   animation: fadeUp 1s 0.4s forwards;
 }
 
 .hero h1 em {
-  font-style: italic;
+  font-style: normal;
   color: var(--accent-glow);
+  position: relative;
+}
+
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-glow);
+  opacity: 0.3;
+  border-radius: 2px;
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
-  color: rgba(250,250,247,0.65);
-  font-weight: 300;
-  max-width: 550px;
-  margin: 0 auto 2.5rem;
+  font-size: 1.1rem;
+  color: rgba(246,249,244,0.6);
+  font-weight: 400;
+  max-width: 560px;
+  margin: 0 auto 2.8rem;
   opacity: 0;
   animation: fadeUp 1s 0.6s forwards;
+  letter-spacing: 0.01em;
 }
 
 .hero-cta {
@@ -128,26 +203,23 @@ body {
 
 .hero-cta a {
   padding: 0.85rem 2rem;
-  border-radius: 50px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   transition: all 0.3s;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.cta-primary {
-  background: var(--accent-glow);
-  color: var(--ink);
-}
-
-.cta-primary:hover { background: #95D5B2; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(82,183,136,0.3); }
-
-.cta-secondary {
-  border: 1.5px solid rgba(250,250,247,0.3);
-  color: var(--paper);
-}
-
+.cta-primary { background: var(--accent-glow); color: var(--hero-start); }
+.cta-primary:hover { background: #6EE7B7; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(52,211,153,0.25); }
+.cta-secondary { border: 1.5px solid rgba(246,249,244,0.2); color: var(--paper); }
 .cta-secondary:hover { border-color: var(--accent-glow); color: var(--accent-glow); }
+.cta-icon { width: 16px; height: 16px; display: inline-flex; }
+.cta-icon svg { width: 100%; height: 100%; }
 
 .scroll-hint {
   position: absolute;
@@ -168,15 +240,8 @@ body {
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
-@keyframes scrollPulse {
-  0%, 100% { opacity: 1; height: 40px; }
-  50% { opacity: 0.4; height: 25px; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes scrollPulse { 0%, 100% { opacity: 1; height: 40px; } 50% { opacity: 0.4; height: 25px; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ═══ NAV ═══ */
 nav {
@@ -192,31 +257,38 @@ nav {
 }
 
 nav.scrolled {
-  background: rgba(250,250,247,0.95);
+  background: rgba(246,249,244,0.92);
   backdrop-filter: blur(20px);
-  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.05);
   padding: 0.8rem 3rem;
 }
 
 .nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
   color: var(--paper);
   text-decoration: none;
+  letter-spacing: -0.02em;
   transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+.nav-logo-icon { width: 22px; height: 22px; display: flex; color: var(--accent-glow); transition: color 0.3s; }
+.nav-logo-icon svg { width: 100%; height: 100%; }
 nav.scrolled .nav-logo { color: var(--ink); }
+nav.scrolled .nav-logo-icon { color: var(--accent); }
 
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 
 .nav-links a {
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(250,250,247,0.7);
-  letter-spacing: 0.5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(246,249,244,0.65);
+  letter-spacing: 0.03em;
   transition: color 0.3s;
 }
 
@@ -226,33 +298,41 @@ nav.scrolled .nav-links a:hover { color: var(--accent); }
 
 /* ═══ SECTIONS ═══ */
 section { padding: 6rem 2rem; }
-
 .container { max-width: 1080px; margin: 0 auto; }
 
+.section-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 0.5rem; }
+
+.section-icon {
+  width: 42px; height: 42px; min-width: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  background: var(--tag-bg);
+  margin-top: 0.2rem;
+}
+.section-icon svg { width: 20px; height: 20px; }
+
 .section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-light);
   margin-bottom: 0.8rem;
+  font-weight: 500;
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 600;
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: 1rem;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.section-subtitle {
-  font-size: 1.05rem;
-  color: var(--muted);
-  max-width: 600px;
-  font-weight: 300;
-}
+.section-subtitle { font-size: 1.02rem; color: var(--muted); max-width: 600px; font-weight: 400; }
 
 /* ═══ ABOUT ═══ */
 #about { background: var(--paper); }
@@ -265,73 +345,82 @@ section { padding: 6rem 2rem; }
   align-items: start;
 }
 
-.about-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 
 .stat-card {
   background: var(--card-bg);
   border: 1px solid var(--light-border);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 1.8rem 1.5rem;
   text-align: center;
   transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.stat-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(45,106,79,0.08); }
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-light), var(--accent-glow));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.stat-card:hover { border-color: var(--accent-light); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(6,95,70,0.08); }
+.stat-card:hover::before { opacity: 1; }
+
+.stat-icon {
+  width: 36px; height: 36px;
+  margin: 0 auto 0.8rem;
+  border-radius: 8px;
+  background: var(--tag-bg);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-light);
+}
+.stat-icon svg { width: 18px; height: 18px; }
 
 .stat-number {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
   color: var(--accent);
   line-height: 1;
   margin-bottom: 0.4rem;
+  letter-spacing: -0.03em;
 }
 
-.stat-label {
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 500;
-}
+.stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
 
-.about-text p {
-  margin-bottom: 1.2rem;
-  font-size: 1rem;
-  color: #444;
-}
+.about-text p { margin-bottom: 1.2rem; font-size: 0.98rem; color: #3D5347; line-height: 1.8; }
 
-.about-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-}
+.about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
 
 .tag {
   background: var(--tag-bg);
   color: var(--tag-text);
   padding: 0.4rem 1rem;
-  border-radius: 50px;
-  font-size: 0.78rem;
-  font-weight: 500;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
+
+.tag-icon { width: 12px; height: 12px; display: inline-flex; flex-shrink: 0; }
+.tag-icon svg { width: 100%; height: 100%; }
 
 /* ═══ METHODOLOGY ═══ */
 #methodology { background: var(--section-bg); }
 
-.method-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
+.method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
 
 .method-card {
   background: var(--card-bg);
-  border-radius: 20px;
+  border-radius: 14px;
   padding: 2rem 1.5rem;
   border: 1px solid var(--light-border);
   position: relative;
@@ -341,62 +430,82 @@ section { padding: 6rem 2rem; }
 
 .method-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
 
+.method-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.method-card:hover::after { opacity: 1; }
+
 .method-step {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: rgba(45,106,79,0.08);
+  font-family: 'Sora', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: rgba(6,95,70,0.06);
   position: absolute;
   top: 0.5rem;
   right: 1rem;
   line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .method-icon {
-  width: 44px;
-  height: 44px;
+  width: 48px; height: 48px;
   border-radius: 12px;
   background: var(--tag-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
+  display: flex; align-items: center; justify-content: center;
   margin-bottom: 1.2rem;
+  color: var(--accent);
+  transition: all 0.3s;
 }
 
+.method-card:hover .method-icon { background: var(--accent); color: white; }
+.method-icon svg { width: 22px; height: 22px; }
+
 .method-card h3 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1rem;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 0.6rem;
   color: var(--ink);
+  letter-spacing: -0.01em;
 }
 
-.method-card p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
+.method-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
 
 /* ═══ CASE STUDIES ═══ */
 #cases { background: var(--paper); }
 
-.cases-grid {
-  display: grid;
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
+.cases-grid { display: grid; gap: 2.5rem; margin-top: 3rem; }
 
 .case-card {
   background: var(--card-bg);
   border: 1px solid var(--light-border);
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.4s;
   cursor: pointer;
+  position: relative;
 }
 
-.case-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.07); transform: translateY(-4px); }
+.case-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent-glow), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.case-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.06); transform: translateY(-4px); }
+.case-card:hover::before { opacity: 1; }
 
 .case-header {
   display: grid;
@@ -407,202 +516,202 @@ section { padding: 6rem 2rem; }
 }
 
 .case-industry {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-light);
   margin-bottom: 0.6rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+.case-industry-icon { width: 16px; height: 16px; display: flex; color: var(--accent-light); }
+.case-industry-icon svg { width: 100%; height: 100%; }
+
 .case-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
   margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
-.case-org {
-  font-size: 0.95rem;
-  color: var(--muted);
-  font-weight: 400;
-}
+.case-org { font-size: 0.92rem; color: var(--muted); font-weight: 400; }
 
-.case-metrics {
-  display: flex;
-  gap: 1.5rem;
-  text-align: center;
-}
-
-.metric {
-  min-width: 80px;
-}
+.case-metrics { display: flex; gap: 1.5rem; text-align: center; }
+.metric { min-width: 80px; }
 
 .metric-value {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: var(--accent);
   line-height: 1.2;
+  letter-spacing: -0.03em;
 }
 
-.metric-label {
-  font-size: 0.7rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+.metric-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
 
-.case-body {
-  padding: 0 2.5rem 2.5rem;
-  display: none;
-}
-
+.case-body { padding: 0 2.5rem 2.5rem; display: none; }
 .case-card.expanded .case-body { display: block; }
 
 .case-section { margin-bottom: 1.5rem; }
 
 .case-section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--warm);
   margin-bottom: 0.6rem;
-  font-weight: 500;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.case-section p, .case-section li {
-  font-size: 0.92rem;
-  color: #555;
-  line-height: 1.75;
-}
+.case-label-icon { width: 14px; height: 14px; display: flex; color: var(--warm); }
+.case-label-icon svg { width: 100%; height: 100%; }
 
-.case-section ul {
-  list-style: none;
-  padding: 0;
-}
+.case-section p, .case-section li { font-size: 0.91rem; color: #3D5347; line-height: 1.75; }
+.case-section ul { list-style: none; padding: 0; }
 
-.case-section li {
-  padding-left: 1.2rem;
-  position: relative;
-  margin-bottom: 0.4rem;
-}
+.case-section li { padding-left: 1.4rem; position: relative; margin-bottom: 0.4rem; }
 
 .case-section li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0.65rem;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  left: 0; top: 0.6rem;
+  width: 7px; height: 7px;
+  border-radius: 2px;
   background: var(--accent-glow);
+  transform: rotate(45deg);
 }
 
-.case-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 1rem;
-}
+.case-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
 
 .expand-hint {
   display: block;
   padding: 1rem 2.5rem 1.8rem;
   font-size: 0.8rem;
-  color: var(--accent);
+  color: var(--accent-light);
   font-weight: 600;
   transition: color 0.3s;
+  letter-spacing: 0.02em;
 }
 
 .case-card.expanded .expand-hint span { display: none; }
-.case-card.expanded .expand-hint::after { content: 'Click to collapse ↑'; }
+.case-card.expanded .expand-hint::after { content: 'Click to collapse \2191'; }
 
 /* ═══ TOOLKIT ═══ */
 #toolkit { background: var(--section-bg); }
 
-.toolkit-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
+.toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
 
 .tool-card {
   background: var(--card-bg);
   border: 1px solid var(--light-border);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 2rem 1.5rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tool-card:hover { border-color: var(--accent-light); }
+.tool-card:hover::before { opacity: 1; }
+
+.tool-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--tag-bg);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--accent);
   transition: all 0.3s;
 }
 
-.tool-card:hover { border-color: var(--accent); }
+.tool-card:hover .tool-icon { background: var(--accent); color: white; }
+.tool-icon svg { width: 20px; height: 20px; }
 
 .tool-card h3 {
-  font-size: 1rem;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--ink);
+  letter-spacing: -0.01em;
 }
 
-.tool-card p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
+.tool-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
 
 /* ═══ CONTACT ═══ */
 #contact {
-  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #1a3a3a 70%, #2D6A4F 100%);
+  background: linear-gradient(170deg, var(--hero-start) 0%, var(--hero-mid) 35%, #0A3D2A 60%, var(--hero-end) 100%);
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(52,211,153,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52,211,153,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.6;
+}
+
+#contact .container { position: relative; z-index: 2; }
+#contact .section-icon { background: rgba(52,211,153,0.1); color: var(--accent-glow); }
 #contact .section-label { color: var(--accent-glow); }
 #contact .section-title { color: var(--paper); }
-#contact .section-subtitle { color: rgba(250,250,247,0.6); margin: 0 auto 2.5rem; }
+#contact .section-subtitle { color: rgba(246,249,244,0.55); margin: 0 auto 2.5rem; }
 
-.contact-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
+.contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 
 .contact-link {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.9rem 1.8rem;
-  border-radius: 50px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   transition: all 0.3s;
-  border: 1.5px solid rgba(250,250,247,0.15);
+  border: 1.5px solid rgba(246,249,244,0.12);
   color: var(--paper);
+  letter-spacing: 0.02em;
 }
 
 .contact-link:hover { border-color: var(--accent-glow); color: var(--accent-glow); transform: translateY(-2px); }
 
-.contact-link.primary {
-  background: var(--accent-glow);
-  color: var(--ink);
-  border-color: var(--accent-glow);
-}
+.contact-link.primary { background: var(--accent-glow); color: var(--hero-start); border-color: var(--accent-glow); }
+.contact-link.primary:hover { background: #6EE7B7; }
 
-.contact-link.primary:hover { background: #95D5B2; }
+.contact-icon { width: 16px; height: 16px; display: inline-flex; flex-shrink: 0; }
+.contact-icon svg { width: 100%; height: 100%; }
 
 /* ═══ FOOTER ═══ */
-footer {
-  background: var(--ink);
-  padding: 2rem;
-  text-align: center;
-  font-size: 0.78rem;
-  color: rgba(250,250,247,0.35);
-}
+footer { background: var(--ink); padding: 2rem; text-align: center; font-size: 0.76rem; color: rgba(246,249,244,0.3); }
 
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 900px) {
@@ -624,14 +733,105 @@ footer {
   .case-body { padding: 0 1.5rem 1.5rem; }
   .expand-hint { padding: 0.8rem 1.5rem 1.5rem; }
   .hero-cta { flex-direction: column; align-items: center; }
+  .section-header { gap: 0.8rem; }
+  .section-icon { width: 36px; height: 36px; min-width: 36px; }
+  .section-icon svg { width: 17px; height: 17px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ═══ SVG ICON DEFINITIONS ═══ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ico-change" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12a9 9 0 1 1-3.07-6.76"/><polyline points="21 3 21 9 15 9"/>
+  </symbol>
+  <symbol id="ico-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </symbol>
+  <symbol id="ico-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22V12h6v10"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01"/>
+  </symbol>
+  <symbol id="ico-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+  </symbol>
+  <symbol id="ico-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+  </symbol>
+  <symbol id="ico-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </symbol>
+  <symbol id="ico-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+  </symbol>
+  <symbol id="ico-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+  </symbol>
+  <symbol id="ico-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+  </symbol>
+  <symbol id="ico-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+  </symbol>
+  <symbol id="ico-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+  </symbol>
+  <symbol id="ico-network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/><line x1="5" y1="19" x2="19" y2="19"/>
+  </symbol>
+  <symbol id="ico-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/>
+  </symbol>
+  <symbol id="ico-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
+  </symbol>
+  <symbol id="ico-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+  </symbol>
+  <symbol id="ico-calculator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="16" y2="18"/>
+  </symbol>
+  <symbol id="ico-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+  </symbol>
+  <symbol id="ico-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+  </symbol>
+  <symbol id="ico-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+  </symbol>
+  <symbol id="ico-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </symbol>
+  <symbol id="ico-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </symbol>
+  <symbol id="ico-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+  </symbol>
+  <symbol id="ico-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </symbol>
+  <symbol id="ico-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22v-7"/><path d="M17 15H7l2-4H6l6-9 6 9h-3l2 4z"/>
+  </symbol>
+  <symbol id="ico-hardhat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 18h20v2H2z"/><path d="M4 18v-3a8 8 0 0 1 16 0v3"/><path d="M12 3v4"/>
+  </symbol>
+  <symbol id="ico-landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 8 4 8"/><line x1="2" y1="18" x2="22" y2="18"/>
+  </symbol>
+  <symbol id="ico-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+  </symbol>
+</svg>
+
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">WSZ</a>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-icon"><svg><use href="#ico-change"/></svg></span>
+    WSZ
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#methodology">Approach</a></li>
@@ -643,13 +843,21 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg-icons">
+    <div class="hero-bg-icon"><svg><use href="#ico-change"/></svg></div>
+    <div class="hero-bg-icon"><svg><use href="#ico-people"/></svg></div>
+    <div class="hero-bg-icon"><svg><use href="#ico-network"/></svg></div>
+    <div class="hero-bg-icon"><svg><use href="#ico-layers"/></svg></div>
+    <div class="hero-bg-icon"><svg><use href="#ico-target"/></svg></div>
+  </div>
   <div class="hero-content">
+    <div class="hero-icon"><svg><use href="#ico-change"/></svg></div>
     <div class="hero-label">Change Management &amp; Transformation</div>
     <h1>Wini Suci <em>As Zahra</em></h1>
     <p class="hero-subtitle">Helping organizations navigate complex transformations — from SAP rollouts to cultural shifts — with clarity, strategy, and measurable results.</p>
     <div class="hero-cta">
-      <a href="#cases" class="cta-primary">View Case Studies</a>
-      <a href="#contact" class="cta-secondary">Get in Touch</a>
+      <a href="#cases" class="cta-primary"><span class="cta-icon"><svg><use href="#ico-layers"/></svg></span>View Case Studies</a>
+      <a href="#contact" class="cta-secondary"><span class="cta-icon"><svg><use href="#ico-message"/></svg></span>Get in Touch</a>
     </div>
   </div>
   <div class="scroll-hint"><span></span></div>
@@ -658,23 +866,32 @@ footer {
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <div class="section-label">About Me</div>
-    <div class="section-title">Bridging People, Process<br>& Technology</div>
+    <div class="section-header">
+      <div class="section-icon"><svg><use href="#ico-people"/></svg></div>
+      <div>
+        <div class="section-label">About Me</div>
+        <div class="section-title">Bridging People, Process<br>&amp; Technology</div>
+      </div>
+    </div>
     <div class="about-grid">
       <div class="about-stats">
         <div class="stat-card">
+          <div class="stat-icon"><svg><use href="#ico-briefcase"/></svg></div>
           <div class="stat-number">3+</div>
           <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon"><svg><use href="#ico-people"/></svg></div>
           <div class="stat-number">1,400+</div>
           <div class="stat-label">End Users Impacted</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon"><svg><use href="#ico-building"/></svg></div>
           <div class="stat-number">6</div>
           <div class="stat-label">Industries Served</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon"><svg><use href="#ico-award"/></svg></div>
           <div class="stat-number">50+</div>
           <div class="stat-label">Change Agents Coached</div>
         </div>
@@ -686,14 +903,14 @@ footer {
           <p>As an IISMA Awardee with cross-cultural experience from Middle East Technical University (Turkey), I bring a global perspective to local transformation challenges.</p>
         </div>
         <div class="about-tags">
-          <span class="tag">Change Impact Assessment</span>
-          <span class="tag">SAP S/4 HANA</span>
-          <span class="tag">Stakeholder Engagement</span>
-          <span class="tag">Training Design</span>
-          <span class="tag">Communication Strategy</span>
-          <span class="tag">Digital Transformation</span>
-          <span class="tag">FTE Calculation</span>
-          <span class="tag">Business Readiness</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-zap"/></svg></span>Change Impact Assessment</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-cog"/></svg></span>SAP S/4 HANA</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-network"/></svg></span>Stakeholder Engagement</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-book"/></svg></span>Training Design</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-message"/></svg></span>Communication Strategy</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-change"/></svg></span>Digital Transformation</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-calculator"/></svg></span>FTE Calculation</span>
+          <span class="tag"><span class="tag-icon"><svg><use href="#ico-shield"/></svg></span>Business Readiness</span>
         </div>
       </div>
     </div>
@@ -703,32 +920,37 @@ footer {
 <!-- METHODOLOGY -->
 <section id="methodology">
   <div class="container">
-    <div class="section-label">My Approach</div>
-    <div class="section-title">How I Drive Change</div>
+    <div class="section-header">
+      <div class="section-icon"><svg><use href="#ico-compass"/></svg></div>
+      <div>
+        <div class="section-label">My Approach</div>
+        <div class="section-title">How I Drive Change</div>
+      </div>
+    </div>
     <p class="section-subtitle">A structured, people-centered methodology refined across multiple industries and transformation types.</p>
     <div class="method-grid">
       <div class="method-card">
         <div class="method-step">01</div>
-        <div class="method-icon">🔍</div>
-        <h3>Assess & Diagnose</h3>
+        <div class="method-icon"><svg><use href="#ico-search"/></svg></div>
+        <h3>Assess &amp; Diagnose</h3>
         <p>Comprehensive change impact, organizational readiness, and risk-benefit assessments to understand the human side of transformation before execution begins.</p>
       </div>
       <div class="method-card">
         <div class="method-step">02</div>
-        <div class="method-icon">🧭</div>
-        <h3>Strategy & Design</h3>
+        <div class="method-icon"><svg><use href="#ico-compass"/></svg></div>
+        <h3>Strategy &amp; Design</h3>
         <p>Develop integrated change strategies aligned with C-level objectives, covering stakeholder mapping, communication plans, and training roadmaps.</p>
       </div>
       <div class="method-card">
         <div class="method-step">03</div>
-        <div class="method-icon">🚀</div>
-        <h3>Execute & Enable</h3>
+        <div class="method-icon"><svg><use href="#ico-rocket"/></svg></div>
+        <h3>Execute &amp; Enable</h3>
         <p>Deploy multi-channel communication campaigns, deliver competency-based training programs, and coach Change Agents to drive adoption at every level.</p>
       </div>
       <div class="method-card">
         <div class="method-step">04</div>
-        <div class="method-icon">📊</div>
-        <h3>Measure & Sustain</h3>
+        <div class="method-icon"><svg><use href="#ico-chart"/></svg></div>
+        <h3>Measure &amp; Sustain</h3>
         <p>Track adoption through Change Metrics Dashboards, monitor resistance patterns, and iterate to ensure lasting behavioral change beyond go-live.</p>
       </div>
     </div>
@@ -738,8 +960,13 @@ footer {
 <!-- CASE STUDIES -->
 <section id="cases">
   <div class="container">
-    <div class="section-label">Case Studies</div>
-    <div class="section-title">Transformation Stories</div>
+    <div class="section-header">
+      <div class="section-icon"><svg><use href="#ico-layers"/></svg></div>
+      <div>
+        <div class="section-label">Case Studies</div>
+        <div class="section-title">Transformation Stories</div>
+      </div>
+    </div>
     <p class="section-subtitle">Selected projects showcasing end-to-end change management across diverse contexts.</p>
     <div class="cases-grid">
 
@@ -747,32 +974,23 @@ footer {
       <div class="case-card" onclick="this.classList.toggle('expanded')">
         <div class="case-header">
           <div>
-            <div class="case-industry">Pulp, Paper & Forestry</div>
+            <div class="case-industry"><span class="case-industry-icon"><svg><use href="#ico-tree"/></svg></span>Pulp, Paper &amp; Forestry</div>
             <h3>Driving Digital Adoption at Scale: SAP S/4 HANA Transformation</h3>
-            <div class="case-org">Leading Global Pulp & Paper Manufacturer — in partnership with Accenture</div>
+            <div class="case-org">Leading Global Pulp &amp; Paper Manufacturer — in partnership with Accenture</div>
           </div>
           <div class="case-metrics">
-            <div class="metric">
-              <div class="metric-value">1,000+</div>
-              <div class="metric-label">End Users</div>
-            </div>
-            <div class="metric">
-              <div class="metric-value">30%</div>
-              <div class="metric-label">Efficiency Gain</div>
-            </div>
-            <div class="metric">
-              <div class="metric-value">6</div>
-              <div class="metric-label">Regions</div>
-            </div>
+            <div class="metric"><div class="metric-value">1,000+</div><div class="metric-label">End Users</div></div>
+            <div class="metric"><div class="metric-value">30%</div><div class="metric-label">Efficiency Gain</div></div>
+            <div class="metric"><div class="metric-value">6</div><div class="metric-label">Regions</div></div>
           </div>
         </div>
         <div class="case-body">
           <div class="case-section">
-            <div class="case-section-label">The Challenge</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-zap"/></svg></span>The Challenge</div>
             <p>A Fortune Global 500 pulp and paper manufacturer was implementing SAP S/4 HANA across its entire value chain — from forestry operations (nursery, plantation, harvesting) to manufacturing (Pindo Deli, OKI Mills). The transformation impacted 1,000+ end users across 6 regions, with significant resistance risks due to deeply entrenched legacy processes and varying digital literacy levels across operational sites.</p>
           </div>
           <div class="case-section">
-            <div class="case-section-label">My Approach</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-compass"/></svg></span>My Approach</div>
             <ul>
               <li>Conducted comprehensive Change Impact Assessments and Organization Impact Assessments for every business process, mapping changes, risks, and benefits at the process level</li>
               <li>Designed competency-based training programs targeting specific skill gaps across 4 new business processes, building training curriculums from scratch with needs analysis and post-training assessments</li>
@@ -782,7 +1000,7 @@ footer {
             </ul>
           </div>
           <div class="case-section">
-            <div class="case-section-label">The Results</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-chart"/></svg></span>The Results</div>
             <ul>
               <li>Achieved approximately 30% efficiency improvement in operational performance post-SAP deployment</li>
               <li>Reached 80% training completion rate and 80% skill improvement across all target user groups</li>
@@ -791,15 +1009,11 @@ footer {
             </ul>
           </div>
           <div class="case-section">
-            <div class="case-section-label">Key Lesson</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-book"/></svg></span>Key Lesson</div>
             <p>In large-scale ERP transformations with diverse user populations, one-size-fits-all training fails. The breakthrough came from segmenting users by digital literacy level and operational context, then tailoring training intensity and format accordingly. Field operators needed hands-on simulation; managers needed process-flow workshops. This segmentation was the single biggest driver of the 80% skill improvement outcome.</p>
           </div>
           <div class="case-tags">
-            <span class="tag">SAP S/4 HANA</span>
-            <span class="tag">Change Impact Assessment</span>
-            <span class="tag">Training Design</span>
-            <span class="tag">FTE Calculation</span>
-            <span class="tag">Accenture Partnership</span>
+            <span class="tag">SAP S/4 HANA</span><span class="tag">Change Impact Assessment</span><span class="tag">Training Design</span><span class="tag">FTE Calculation</span><span class="tag">Accenture Partnership</span>
           </div>
         </div>
         <div class="expand-hint"><span>Click to read full case study →</span></div>
@@ -809,28 +1023,22 @@ footer {
       <div class="case-card" onclick="this.classList.toggle('expanded')">
         <div class="case-header">
           <div>
-            <div class="case-industry">Engineering & Construction</div>
-            <h3>Cross-Client Change Management in Engineering & Construction</h3>
+            <div class="case-industry"><span class="case-industry-icon"><svg><use href="#ico-hardhat"/></svg></span>Engineering &amp; Construction</div>
+            <h3>Cross-Client Change Management in Engineering &amp; Construction</h3>
             <div class="case-org">Leading Indonesian EPC Company — 5 Multinational Clients</div>
           </div>
           <div class="case-metrics">
-            <div class="metric">
-              <div class="metric-value">5</div>
-              <div class="metric-label">Clients</div>
-            </div>
-            <div class="metric">
-              <div class="metric-value">4</div>
-              <div class="metric-label">Business Systems</div>
-            </div>
+            <div class="metric"><div class="metric-value">5</div><div class="metric-label">Clients</div></div>
+            <div class="metric"><div class="metric-value">4</div><div class="metric-label">Business Systems</div></div>
           </div>
         </div>
         <div class="case-body">
           <div class="case-section">
-            <div class="case-section-label">The Challenge</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-zap"/></svg></span>The Challenge</div>
             <p>A major Indonesian engineering, procurement, and construction (EPC) firm was simultaneously rolling out 4 new enterprise systems — Manpower Planning, Document Management, Management System, and Project Productivity Management — while serving active projects for 5 multinational clients: Pertamina, POSCO, Shell, Pupuk Kaltim, and LCo2. The challenge was managing change at the corporate level while adapting to client-specific project requirements.</p>
           </div>
           <div class="case-section">
-            <div class="case-section-label">My Approach</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-compass"/></svg></span>My Approach</div>
             <ul>
               <li>Led full-cycle change management from scoping through adoption, covering corporate-level systems and project-level operational workflows</li>
               <li>Conducted change impact assessments across 3 core disciplines: engineering, procurement, and construction — each with distinct process cultures</li>
@@ -839,7 +1047,7 @@ footer {
             </ul>
           </div>
           <div class="case-section">
-            <div class="case-section-label">The Results</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-chart"/></svg></span>The Results</div>
             <ul>
               <li>Successfully deployed all 4 systems from corporate to project level within the planned timeline</li>
               <li>Optimized site operational management workflows across engineering, procurement, and construction</li>
@@ -847,14 +1055,11 @@ footer {
             </ul>
           </div>
           <div class="case-section">
-            <div class="case-section-label">Key Lesson</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-book"/></svg></span>Key Lesson</div>
             <p>When managing change across multiple simultaneous client engagements in EPC, the critical success factor is separating "core change" (corporate systems and processes that are non-negotiable) from "adaptive change" (client-specific workflows that need flexibility). Trying to standardize everything creates resistance; allowing everything to be custom creates chaos. The framework needs a clear core with defined flex points.</p>
           </div>
           <div class="case-tags">
-            <span class="tag">EPC</span>
-            <span class="tag">Multi-Client</span>
-            <span class="tag">Operational Change</span>
-            <span class="tag">System Rollout</span>
+            <span class="tag">EPC</span><span class="tag">Multi-Client</span><span class="tag">Operational Change</span><span class="tag">System Rollout</span>
           </div>
         </div>
         <div class="expand-hint"><span>Click to read full case study →</span></div>
@@ -864,24 +1069,21 @@ footer {
       <div class="case-card" onclick="this.classList.toggle('expanded')">
         <div class="case-header">
           <div>
-            <div class="case-industry">State-Owned Enterprises</div>
+            <div class="case-industry"><span class="case-industry-icon"><svg><use href="#ico-link"/></svg></span>State-Owned Enterprises</div>
             <h3>Unifying Three SOEs Under a Single Transformation Agenda</h3>
-            <div class="case-org">Survey & Inspection Holding — Cross-Entity Integration</div>
+            <div class="case-org">Survey &amp; Inspection Holding — Cross-Entity Integration</div>
           </div>
           <div class="case-metrics">
-            <div class="metric">
-              <div class="metric-value">3</div>
-              <div class="metric-label">Sub-Holdings</div>
-            </div>
+            <div class="metric"><div class="metric-value">3</div><div class="metric-label">Sub-Holdings</div></div>
           </div>
         </div>
         <div class="case-body">
           <div class="case-section">
-            <div class="case-section-label">The Challenge</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-zap"/></svg></span>The Challenge</div>
             <p>A newly formed state-owned holding company needed to integrate three established survey and inspection entities — each with distinct corporate cultures, governance structures, and operational systems — under a unified transformation agenda. The challenge extended beyond systems integration to cultural alignment and governance harmonization.</p>
           </div>
           <div class="case-section">
-            <div class="case-section-label">My Approach</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-compass"/></svg></span>My Approach</div>
             <ul>
               <li>Designed a cross-entity Change Management Program that respected the identity of each subsidiary while building toward unified operating principles</li>
               <li>Conducted comprehensive Change Impact Assessments across systems, roles, governance, and culture at all three sub-holdings</li>
@@ -890,14 +1092,11 @@ footer {
             </ul>
           </div>
           <div class="case-section">
-            <div class="case-section-label">Key Lesson</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-book"/></svg></span>Key Lesson</div>
             <p>Merging cultures is harder than merging systems. When integrating multiple organizations, the biggest mistake is leading with systems and process standardization. Leading with a shared vision and governance clarity — then layering systems on top — creates the psychological safety needed for people to let go of "how we've always done it."</p>
           </div>
           <div class="case-tags">
-            <span class="tag">SOE Integration</span>
-            <span class="tag">Cultural Change</span>
-            <span class="tag">Governance</span>
-            <span class="tag">Cross-Entity</span>
+            <span class="tag">SOE Integration</span><span class="tag">Cultural Change</span><span class="tag">Governance</span><span class="tag">Cross-Entity</span>
           </div>
         </div>
         <div class="expand-hint"><span>Click to read full case study →</span></div>
@@ -907,24 +1106,21 @@ footer {
       <div class="case-card" onclick="this.classList.toggle('expanded')">
         <div class="case-header">
           <div>
-            <div class="case-industry">Government / Public Sector</div>
+            <div class="case-industry"><span class="case-industry-icon"><svg><use href="#ico-landmark"/></svg></span>Government / Public Sector</div>
             <h3>Modernizing IT Governance Across 100+ Diplomatic Missions</h3>
             <div class="case-org">Ministry of Foreign Affairs of the Republic of Indonesia</div>
           </div>
           <div class="case-metrics">
-            <div class="metric">
-              <div class="metric-value">100+</div>
-              <div class="metric-label">Embassies</div>
-            </div>
+            <div class="metric"><div class="metric-value">100+</div><div class="metric-label">Embassies</div></div>
           </div>
         </div>
         <div class="case-body">
           <div class="case-section">
-            <div class="case-section-label">The Challenge</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-zap"/></svg></span>The Challenge</div>
             <p>Indonesia's Ministry of Foreign Affairs faced significant challenges in IT governance across its global network of 100+ embassies. Decentralized IT management, varying levels of local technical capability, and the unique challenge of regular ambassadorial rotations created a fragmented technology landscape that hindered modernization efforts.</p>
           </div>
           <div class="case-section">
-            <div class="case-section-label">My Approach</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-compass"/></svg></span>My Approach</div>
             <ul>
               <li>Delivered organizational and human resource analysis for global IT divisions, mapping decentralized governance challenges across embassy networks worldwide</li>
               <li>Facilitated workload and job role change assessments to recommend structure modernization and capability alignment</li>
@@ -933,14 +1129,11 @@ footer {
             </ul>
           </div>
           <div class="case-section">
-            <div class="case-section-label">Key Lesson</div>
+            <div class="case-section-label"><span class="case-label-icon"><svg><use href="#ico-book"/></svg></span>Key Lesson</div>
             <p>Government transformation requires a fundamentally different change management cadence. Unlike corporate transformations with clear executive mandates, diplomatic institutions operate on rotation cycles and consensus. Change strategies must be designed to survive leadership transitions — embedding adoption into institutional processes rather than relying on individual champions who will inevitably rotate out.</p>
           </div>
           <div class="case-tags">
-            <span class="tag">Government</span>
-            <span class="tag">IT Governance</span>
-            <span class="tag">Global Operations</span>
-            <span class="tag">Org Design</span>
+            <span class="tag">Government</span><span class="tag">IT Governance</span><span class="tag">Global Operations</span><span class="tag">Org Design</span>
           </div>
         </div>
         <div class="expand-hint"><span>Click to read full case study →</span></div>
@@ -953,31 +1146,42 @@ footer {
 <!-- TOOLKIT -->
 <section id="toolkit">
   <div class="container">
-    <div class="section-label">Toolkit</div>
-    <div class="section-title">Frameworks & Tools I Use</div>
+    <div class="section-header">
+      <div class="section-icon"><svg><use href="#ico-cog"/></svg></div>
+      <div>
+        <div class="section-label">Toolkit</div>
+        <div class="section-title">Frameworks &amp; Tools I Use</div>
+      </div>
+    </div>
     <p class="section-subtitle">Practical tools developed and refined through real-world implementations.</p>
     <div class="toolkit-grid">
       <div class="tool-card">
+        <div class="tool-icon"><svg><use href="#ico-clipboard"/></svg></div>
         <h3>Change Impact Assessment</h3>
         <p>Structured analysis mapping process-level changes, risks, and benefits across business units — with heat-mapping for resistance prediction.</p>
       </div>
       <div class="tool-card">
+        <div class="tool-icon"><svg><use href="#ico-shield"/></svg></div>
         <h3>Change Readiness Survey</h3>
         <p>Diagnostic instrument measuring organizational and individual readiness across awareness, desire, knowledge, ability, and reinforcement dimensions.</p>
       </div>
       <div class="tool-card">
+        <div class="tool-icon"><svg><use href="#ico-network"/></svg></div>
         <h3>Stakeholder Mapping</h3>
         <p>Influence-impact matrix identifying key sponsors, change agents, and resistance clusters — with tailored engagement strategies for each segment.</p>
       </div>
       <div class="tool-card">
+        <div class="tool-icon"><svg><use href="#ico-book"/></svg></div>
         <h3>Training Curriculum Design</h3>
         <p>Competency-gap-based training programs with needs analysis, curriculum development, delivery planning, and post-training effectiveness assessments.</p>
       </div>
       <div class="tool-card">
-        <h3>FTE Calculation & Workforce Analysis</h3>
+        <div class="tool-icon"><svg><use href="#ico-calculator"/></svg></div>
+        <h3>FTE Calculation &amp; Workforce Analysis</h3>
         <p>Data-driven Full-Time Equivalent analysis to quantify workforce optimization opportunities pre- and post-transformation.</p>
       </div>
       <div class="tool-card">
+        <div class="tool-icon"><svg><use href="#ico-sliders"/></svg></div>
         <h3>Change Metrics Dashboard</h3>
         <p>Real-time tracking of adoption rates, training completion, engagement scores, and resistance patterns — enabling proactive intervention.</p>
       </div>
@@ -988,29 +1192,35 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
-    <div class="section-label">Get in Touch</div>
-    <div class="section-title">Let's Talk Transformation</div>
-    <p class="section-subtitle">Whether you're planning an ERP rollout, organizational restructuring, or cultural transformation — I'd love to connect.</p>
+    <div class="section-header" style="justify-content:center;text-align:center;">
+      <div>
+        <div class="section-label">Get in Touch</div>
+        <div class="section-title">Let's Talk Transformation</div>
+      </div>
+    </div>
+    <p class="section-subtitle" style="text-align:center;">Whether you're planning an ERP rollout, organizational restructuring, or cultural transformation — I'd love to connect.</p>
     <div class="contact-links">
-      <a href="mailto:winiscaz28@gmail.com" class="contact-link primary">✉ winiscaz28@gmail.com</a>
-      <a href="https://www.linkedin.com/in/winizahra" target="_blank" class="contact-link">in LinkedIn</a>
-      <a href="tel:+6289798880896" class="contact-link">📞 +62 897 988 0896</a>
+      <a href="mailto:winiscaz28@gmail.com" class="contact-link primary">
+        <span class="contact-icon"><svg><use href="#ico-mail"/></svg></span>winiscaz28@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/winizahra" target="_blank" class="contact-link">
+        <span class="contact-icon"><svg><use href="#ico-linkedin"/></svg></span>LinkedIn
+      </a>
+      <a href="tel:+6289798880896" class="contact-link">
+        <span class="contact-icon"><svg><use href="#ico-phone"/></svg></span>+62 897 988 0896
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 Wini Suci As Zahra. Built with intention.</p>
+  <p>&copy; 2025 Wini Suci As Zahra. Built with intention.</p>
 </footer>
 
 <script>
-// Nav scroll effect
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 80);
-});
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
 
-// Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
@@ -1019,7 +1229,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Animate elements on scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1029,12 +1238,4 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.stat-card, .method-card, .case-card, .tool-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-  observer.observe(el);
-});
-</script>
-</body>
-</html>
+document.querySelectorAll('
